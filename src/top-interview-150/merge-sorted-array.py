@@ -52,17 +52,22 @@ class Solution(object):
         if (len(nums1) > m):
             nums1 = nums1[0:m]
 
-        
         if (len(nums2) > n):
             nums2 = nums2[0:n]
 
-        nums1 = sorted(nums1 + nums2)
+        new_list = sorted(nums1 + nums2)
 
-        print(nums1)
+        del nums1[:]
+        for n in new_list:
+            nums1.append(n)
 
+
+nums = [1,2,3,0,0,0]
 Solution().merge(
-    nums1=[1,2,3,0,0,0],
+    nums1=nums,
     m=3,
     nums2=[2,5,6],
     n= 3)
+
+print(nums)
         
