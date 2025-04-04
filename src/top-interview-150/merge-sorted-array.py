@@ -50,7 +50,7 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums1 in-place instead.
         """
         if (len(nums1) > m):
-            nums1 = nums1[0:m]
+            del nums1[m:]
 
         if (len(nums2) > n):
             nums2 = nums2[0:n]
