@@ -39,6 +39,20 @@ class Solution():
         :type nums: List[int]
         :rtype: int
         """
+        lastNum = None
+        repeatableCount = 0
+        copy = nums[:]
+        indexToRemove = -1
+        for num in copy:
+            if (lastNum == num and repeatableCount >= 2):
+                nums.pop(indexToRemove)
+                indexToRemove-=1
+            if (repeatableCount and lastNum != num):
+                repeatableCount = 0
+            lastNum = num
+            repeatableCount+=1
+            indexToRemove+=1
+
         
 nums = [-1,0,0,0,0,3,3]
 result = Solution().removeDuplicates(nums)
