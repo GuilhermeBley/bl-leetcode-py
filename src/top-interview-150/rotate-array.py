@@ -18,11 +18,31 @@ rotate 1 steps to the right: [99,-1,-100,3]
 rotate 2 steps to the right: [3,99,-1,-100]
 """
 
+from typing import List
+
+
 class Solution(object):
-    def rotate(self, nums, k):
+    def rotate(self, nums: List[int], k: int):
         """
         :type nums: List[int]
         :type k: int
         :rtype: None Do not return anything, modify nums in-place instead.
         """
+
+        if (k == 0 or len(nums) == 0):
+            return
         
+        if (k > len(nums)):
+            k = len(nums)
+        
+        for _ in range(k):
+            value = nums[-1]
+            if (value < 0):
+                continue
+            del nums[-1]
+            nums.insert(0, value)
+
+
+nums = [-1,-100,3,99]
+Solution().rotate(nums, 3)
+print(nums)
