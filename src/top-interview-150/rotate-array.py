@@ -32,8 +32,8 @@ class Solution(object):
         if (k == 0 or len(nums) == 0):
             return
         
-        if (k > len(nums)):
-            k = len(nums)
+        if (k >= len(nums)):
+            k = len(nums) - 1
         
         for _ in range(k):
             value = nums[-1]
@@ -43,6 +43,6 @@ class Solution(object):
             nums.insert(0, value)
 
 
-nums = [-1,-100,3,99]
+nums = [1,2]
 Solution().rotate(nums, 3)
 print(nums)
