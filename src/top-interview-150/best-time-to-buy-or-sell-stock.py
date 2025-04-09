@@ -39,8 +39,6 @@ class Solution(object):
             profit = max - p
             if (profit > maxProfit):
                 maxProfit = profit
-
-
         return maxProfit
     
 prices = [7,1,5,3,6,4]
