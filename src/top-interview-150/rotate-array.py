@@ -29,20 +29,22 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums in-place instead.
         """
 
+        total = len(nums)
         if (k == 0 or len(nums) == 0):
             return
         
-        if (k >= len(nums)):
+        if (k > total):
             k = len(nums) - 1
         
-        for _ in range(k):
-            value = nums[-1]
-            if (value < 0):
-                continue
-            del nums[-1]
-            nums.insert(0, value)
+        
+
+        for i in range(k):
+            oldvalue = nums[i]
+            nums[i]=nums[k+i+1]
+            nums[k+i+1]=oldvalue
 
 
-nums = [1,2]
+# [5,6,7,1,2,3,4]
+nums = [1,2,3,4,5,6,7]
 Solution().rotate(nums, 3)
 print(nums)
