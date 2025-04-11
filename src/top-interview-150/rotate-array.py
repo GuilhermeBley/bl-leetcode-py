@@ -28,17 +28,14 @@ class Solution(object):
         :type k: int
         :rtype: None Do not return anything, modify nums in-place instead.
         """
-        
-        if (k > len(nums)):
-            k = len(nums) - 1
-        
-        copy = nums[:k+1]
-        del nums[:k+1]
-        for c in copy:
-            nums.append(c)
+        for i in range(k):
+            deletedOne = nums[-1]
+            del nums[-1]
+            nums.insert(0, deletedOne)
 
 
 # [5,6,7,1,2,3,4]
-nums = [1,2,3,4,5,6,7]
-Solution().rotate(nums, 3)
+nums = [99,-1,-100,3]
+
+Solution().rotate(nums, 2)
 print(nums)
