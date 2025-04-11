@@ -28,20 +28,14 @@ class Solution(object):
         :type k: int
         :rtype: None Do not return anything, modify nums in-place instead.
         """
-
-        total = len(nums)
-        if (k == 0 or len(nums) == 0):
-            return
         
-        if (k > total):
+        if (k > len(nums)):
             k = len(nums) - 1
         
-        
-
-        for i in range(k):
-            oldvalue = nums[i]
-            nums[i]=nums[k+i+1]
-            nums[k+i+1]=oldvalue
+        copy = nums[:k+1]
+        del nums[:k+1]
+        for c in copy:
+            nums.append(c)
 
 
 # [5,6,7,1,2,3,4]
