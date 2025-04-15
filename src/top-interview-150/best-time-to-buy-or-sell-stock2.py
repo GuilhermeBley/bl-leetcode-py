@@ -39,4 +39,34 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
+        lastN = None
+        accumulatedProfit = 0
+
+        for n in prices:
+
+            if (lastN == None):
+                lastN = n
+            
+            if lastN < n:
+                accumulatedProfit += n - lastN
+                lastN = n
+                continue
+
+            lastN = n
+
+        return accumulatedProfit
+
+
+prices = [7,1,5,3,6,4]
+output = Solution().maxProfit(prices)
+
+print(output)
+# Output: 7
+
+
+prices = [1,2,3,4,5]
+output = Solution().maxProfit(prices)
+
+print(output)
+# Output: 4
         
