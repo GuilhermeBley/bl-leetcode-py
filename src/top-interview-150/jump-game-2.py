@@ -28,4 +28,20 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        
+        jumps = 0
+        i = 0
+        j = -1
+        maxIndex = len(nums)-1
+
+        while(True):
+            if (i >= maxIndex or j == 0):
+                break
+            j =  nums[i]
+            i = i + j
+            jumps+=1
+
+        return jumps
+    
+nums = [2,3,0,1,4]
+result = Solution().jump(nums=nums)
+print(result)
