@@ -36,12 +36,15 @@ class Solution(object):
         while(True):
             if (i >= maxIndex or j == 0):
                 break
+
             j =  nums[i]
+            availableJumps = nums[i:i+j]
+            j = max(availableJumps)
             i = i + j
             jumps+=1
 
         return jumps
     
-nums = [2,3,0,1,4]
+nums = [1,2,3,4,5]
 result = Solution().jump(nums=nums)
-print(result)
+print(result) # 3
