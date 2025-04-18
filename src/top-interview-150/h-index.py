@@ -23,4 +23,20 @@ class Solution(object):
         :type citations: List[int]
         :rtype: int
         """
+
+        totalPapers = len(citations)
+        h = 0
+        for c in citations:
+            if (h == 0 and c > 0):
+                h = 1
+
+            if (c < totalPapers and c > h):
+                h = c
+
+        return h
+    
+citations = [1,3,1]
+result = Solution().hIndex(citations=citations)
+print(result)
+
         
