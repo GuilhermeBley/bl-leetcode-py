@@ -30,15 +30,22 @@ randomizedSet.insert(2); // 2 was already in the set, so return false.
 randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
 """
 
+
+import random
+
 class RandomizedSet(object):
 
     def __init__(self):
+        self.items = set()
 
     def insert(self, val):
         """
         :type val: int
         :rtype: bool
         """
+        c = len(self.items)
+        self.items.add(val)
+        return c != len(self.items)
         
 
     def remove(self, val):
@@ -46,11 +53,14 @@ class RandomizedSet(object):
         :type val: int
         :rtype: bool
         """
+        c = len(self.items)
+        self.items.discard(val)
+        return c != len(self.items)
         
 
     def getRandom(self):
         """
         :rtype: int
         """
-
-set = RandomizedSet()
+        random_int = random.randint(0, len(self.items)-1)  # includes both endpoints
+        return next(x for i, x in enumerate(self.items) if i == random_int)
