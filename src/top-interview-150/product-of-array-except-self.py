@@ -34,15 +34,29 @@ class Solution(object):
         """
         
         allProd = 1
-        for n in nums:
-            if (n == 0): continue
+        zeroIndexes = []
+        for i in range(0, len(nums)):
+            n = nums[i]
+            if (n == 0):
+                zeroIndexes.append(i) 
+                continue
             allProd *= n
 
         products = []
-        for n in nums:
-            if (n == 0):
+        for i in range(0, len(nums)):
+            n = nums[i]
+
+            if (len(zeroIndexes) > 1):
                 products.append(0)
-                continue    
+                continue
+
+            if (len(zeroIndexes) == 1 and n != 0):
+                products.append(0)
+                continue
+
+            if (n == 0 and len(zeroIndexes) == 1):
+                products.append(allProd)
+                continue
 
             products.append(allProd / n)
 
