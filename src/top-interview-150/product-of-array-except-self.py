@@ -33,15 +33,21 @@ class Solution(object):
         :rtype: List[int]
         """
         
+        allProd = 1
+        for n in nums:
+            if (n == 0): continue
+            allProd *= n
+
         products = []
-        for i in range(0, len(nums)):
-            products.append(1)
-            for j in range(0, len(nums)):
-                if (i != j):
-                    products[i] = products[i] * nums[j]
+        for n in nums:
+            if (n == 0):
+                products.append(0)
+                continue    
+
+            products.append(allProd / n)
 
         return products
     
-nums = [-1,1,0,-3,3]
+nums = [1,2,3,4]
 r = Solution().productExceptSelf(nums)
 print(r)
