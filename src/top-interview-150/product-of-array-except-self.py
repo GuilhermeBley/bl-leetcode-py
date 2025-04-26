@@ -8,11 +8,10 @@ The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit int
 You must write an algorithm that runs in O(n) time and without using the division operation.
 
 Example 1:
-
 Input: nums = [1,2,3,4]
 Output: [24,12,8,6]
-Example 2:
 
+Example 2:
 Input: nums = [-1,1,0,-3,3]
 Output: [0,0,9,0,0]
  
@@ -24,10 +23,25 @@ Constraints:
 The input is generated such that answer[i] is guaranteed to fit in a 32-bit integer.
 """
 
+from typing import List
+
+
 class Solution(object):
-    def productExceptSelf(self, nums):
+    def productExceptSelf(self, nums: List[int]):
         """
         :type nums: List[int]
         :rtype: List[int]
         """
         
+        products = []
+        for i in range(0, len(nums)):
+            products.append(1)
+            for j in range(0, len(nums)):
+                if (i != j):
+                    products[i] = products[i] * nums[j]
+
+        return products
+    
+nums = [-1,1,0,-3,3]
+r = Solution().productExceptSelf(nums)
+print(r)
