@@ -44,14 +44,42 @@ n == gas.length == cost.length
 0 <= gas[i], cost[i] <= 104
 The input is generated such that the answer is unique.
 """
+
+from typing import List
+
 class Solution():
-    def canCompleteCircuit(self, gas, cost):
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]):
         """
         :type gas: List[int]
         :type cost: List[int]
         :rtype: int
         """
+        size = len(gas)
+        if (size != len(cost)): return -1
+        
+        startingIndex = -1
+        tank = 0
+        i = 0
+        while i < size:
+            cgas = gas[i] 
+            ccost = cost[i]
 
-citations = [1,3,1]
-result = Solution().canCompleteCircuit(citations=citations)
+            if ((tank+cgas) < ccost): 
+                i += 1
+                continue
+
+            if (startingIndex == -1): startingIndex = i
+            tank = tank - ccost + cgas
+            del gas[i]
+            del cost[i]
+            size -= 1
+            i=0 # start again
+        
+        if (len(gas) > 0): return -1
+
+        return startingIndex
+
+gas = [2,3,4]
+cost = [3,4,3]
+result = Solution().canCompleteCircuit(gas, cost)
 print(result)
