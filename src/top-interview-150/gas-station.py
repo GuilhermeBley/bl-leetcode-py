@@ -60,26 +60,32 @@ class Solution():
         startingIndex = -1
         tank = 0
         i = 0
+        tankProcessedQtt = 0
         while i < size:
             cgas = gas[i] 
             ccost = cost[i]
 
             if ((tank+cgas) < ccost): 
                 i += 1
-                continue
+                startingIndex = -1
+                tank = 0
+                tankProcessedQtt = 0
+                continue # to make an circle check, you'll need to ensure that all the path will be processed in a row.
 
             if (startingIndex == -1): startingIndex = i
+            elif (startingIndex == i): break # breaking to don't start again
             tank = tank - ccost + cgas
-            del gas[i]
-            del cost[i]
-            size -= 1
-            i=0 # start again
+            tankProcessedQtt += 1
+
+            isLastIndex = (i+1)==size
+            if (isLastIndex and (startingIndex != -1)): i = 0 # starting from the beggining again
+            else: i += 1 # going to the next 
         
-        if (len(gas) > 0): return -1
+        if (len(gas) != tankProcessedQtt): return -1 # coudn't process all paths
 
         return startingIndex
 
-gas = [2,3,4]
-cost = [3,4,3]
+gas = [1,2,3,4,5]
+cost = [3,4,5,1,2]
 result = Solution().canCompleteCircuit(gas, cost)
 print(result)
