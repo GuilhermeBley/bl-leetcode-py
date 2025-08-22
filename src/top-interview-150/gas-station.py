@@ -65,7 +65,9 @@ class Solution():
             cgas = gas[i] 
             ccost = cost[i]
 
-            if ((tank+cgas) < ccost): 
+            canCompleteThePath = (tank+cgas) >= ccost
+            if (startingIndex > i and canCompleteThePath == False): break # breaking to don't start again
+            if (canCompleteThePath == False): 
                 i += 1
                 startingIndex = -1
                 tank = 0
@@ -73,7 +75,7 @@ class Solution():
                 continue # to make an circle check, you'll need to ensure that all the path will be processed in a row.
 
             if (startingIndex == -1): startingIndex = i
-            elif (startingIndex == i): break # breaking to don't start again
+            elif (startingIndex == i): break
             tank = tank - ccost + cgas
             tankProcessedQtt += 1
 
@@ -85,7 +87,12 @@ class Solution():
 
         return startingIndex
 
-gas = [1,2,3,4,5]
-cost = [3,4,5,1,2]
-result = Solution().canCompleteCircuit(gas, cost)
-print(result)
+gas1 = [5,1,2,3,4]
+cost1 = [4,4,1,5,1]
+result = Solution().canCompleteCircuit(gas1, cost1)
+print(result) # should be 4
+
+gas1 = [2,3,4]
+cost1 = [3,4,3]
+result = Solution().canCompleteCircuit(gas1, cost1)
+print(result) # should be -1
