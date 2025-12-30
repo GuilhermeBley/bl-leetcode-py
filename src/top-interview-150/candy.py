@@ -36,20 +36,24 @@ class Solution():
         :rtype: int
         """
         candyQtt = 0
-        previousNeighborCandyQtt = 1
-        for i in range(0, len(ratings)):
-            previousNeighborCandyQtt = 1 # reseting quantity
+        totalRatings = len(ratings)
+        candyQuantity = 1
+        for i in range(0, totalRatings):
             try:
                 currentRate = ratings[i]
-                if (i > 0 and ratings[i-1] < currentRate):
-                    previousNeighborCandyQtt+=1
+                if ((i > 0 and ratings[i-1] < currentRate) or (i < totalRatings - 1 and currentRate > ratings[i+1])):
+                    candyQuantity+=1
+                else:
+                    candyQuantity = 1 # reseting quantity
             finally:
-                candyQtt+=previousNeighborCandyQtt
+                candyQtt+=candyQuantity
         
         return candyQtt
 
             
 
 
-print('' + str(Solution().candy([1,0,2])) + 'Expect: 5')
-print('' + str(Solution().candy([1,2,2])) + 'Expect: 4')
+print('' + str(Solution().candy([1,0,2])) + ' Expect: 5')
+print('' + str(Solution().candy([1,2,2])) + ' Expect: 4')
+print('' + str(Solution().candy([1,3,2,2,1])) + ' Expect: 7 Because => 1 + 2 + 1 + 2 + 1')
+print('' + str(Solution().candy([1,2,87,87,87,2,1])) + ' Expect: 13 Because => 1 + 2 + 3 + 1 + 3 + 2 + 1')
