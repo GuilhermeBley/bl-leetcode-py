@@ -37,16 +37,26 @@ class Solution():
         """
         candyQtt = 0
         totalRatings = len(ratings)
-        candyQuantity = 1
+        currentCandyQuantity = 1
+        leftSimblingCandyQuantity = { "quantity": 1, "rate": 1 }
+        rightSimblingCandyQuantity = { "quantity": 1, "rate": 1 }
+
         for i in range(0, totalRatings):
+            currentCandyQuantity = 1
+            currentRate = ratings[i]
+
+            if (i < totalRatings - 1):
+                rightSimblingCandyQuantity = { "quantity": 1, "rate": ratings[i + 1] }
+
             try:
-                currentRate = ratings[i]
-                if ((i > 0 and ratings[i-1] < currentRate) or (i < totalRatings - 1 and currentRate > ratings[i+1])):
-                    candyQuantity+=1
-                else:
-                    candyQuantity = 1 # reseting quantity
+                if (currentRate > leftSimblingCandyQuantity["rate"]): # is current rating bigger than the previous
+                    currentCandyQuantity=leftSimblingCandyQuantity["quantity"] + 1
+
+                elif (currentRate > rightSimblingCandyQuantity["rate"]): # is current rating bigger than the next
+                    currentCandyQuantity=rightSimblingCandyQuantity["quantity"] + 1
             finally:
-                candyQtt+=candyQuantity
+                candyQtt+=currentCandyQuantity
+                leftSimblingCandyQuantity = { "quantity": currentCandyQuantity, "rate": currentRate }
         
         return candyQtt
 
@@ -57,3 +67,4 @@ print('' + str(Solution().candy([1,0,2])) + ' Expect: 5')
 print('' + str(Solution().candy([1,2,2])) + ' Expect: 4')
 print('' + str(Solution().candy([1,3,2,2,1])) + ' Expect: 7 Because => 1 + 2 + 1 + 2 + 1')
 print('' + str(Solution().candy([1,2,87,87,87,2,1])) + ' Expect: 13 Because => 1 + 2 + 3 + 1 + 3 + 2 + 1')
+print('' + str(Solution().candy([29,51,87,87,72,12])) + ' Expect: 12 Because => 1 + 2 + 3 + 3 + 2 + 1')
