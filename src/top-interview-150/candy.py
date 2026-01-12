@@ -39,7 +39,7 @@ class Solution():
         currentCandyQuantity = 1
         leftSimblingCandyQuantity = { "quantity": 1, "rate": -1 }
         rightSimblingCandyQuantity = { "quantity": 1, "rate": -1 }
-        ranges = [range(0, totalRatings - 1), reversed(range(0, totalRatings - 1))]
+        ranges = [range(0, totalRatings), reversed(range(0, totalRatings))]
         answer = []
 
         for rangeSearch in ranges:
@@ -57,7 +57,7 @@ class Solution():
                     elif (currentRate > rightSimblingCandyQuantity["rate"]): # is current rating bigger than the next
                         currentCandyQuantity=rightSimblingCandyQuantity["quantity"] + 1
                 finally:
-                    if (len(answer) > i and i != 0):
+                    if (len(answer) > i):
                         answer[i] = max(answer[i], currentCandyQuantity)
                     else:
                         answer.insert(i, currentCandyQuantity)
@@ -75,3 +75,4 @@ print('' + str(Solution().candy([1,3,2,2,1])) + ' Expect: 7 Because => 1 + 2 + 1
 print('' + str(Solution().candy([1,2,87,87,87,2,1])) + ' Expect: 13 Because => 1 + 2 + 3 + 1 + 3 + 2 + 1')
 print('' + str(Solution().candy([29,51,87,87,72,12])) + ' Expect: 12 Because => 1 + 2 + 3 + 2 + 2 + 1')
 print('' + str(Solution().candy([1,6,10,8,7,3,2])) + ' Expect: 18 Because => 1 + 2 + 5 + 4 + 3 + 2 + 1')
+print('' + str(Solution().candy([0,1,2,5,3,2,7])) + ' Expect: 15 Because => 1 + 2 + 3 + 4 + 3 + 2 + 1')
