@@ -42,6 +42,9 @@ class Solution():
         ranges = [range(0, totalRatings), reversed(range(0, totalRatings))]
         answer = []
 
+        if (totalRatings == 1):
+            return 1
+
         for rangeSearch in ranges:
             for i in rangeSearch:
                 currentCandyQuantity = 1
@@ -70,6 +73,7 @@ class Solution():
 
 
 print('' + str(Solution().candy([1,0,2])) + ' Expect: 5')
+print('' + str(Solution().candy([0])) + ' Expect: 1')
 print('' + str(Solution().candy([1,2,2])) + ' Expect: 4')
 print('' + str(Solution().candy([1,3,2,2,1])) + ' Expect: 7 Because => 1 + 2 + 1 + 2 + 1')
 print('' + str(Solution().candy([1,2,87,87,87,2,1])) + ' Expect: 13 Because => 1 + 2 + 3 + 1 + 3 + 2 + 1')
