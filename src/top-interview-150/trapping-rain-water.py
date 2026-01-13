@@ -16,3 +16,11 @@ n == height.length
 1 <= n <= 2 * 104
 0 <= height[i] <= 105
 """
+
+class Solution():
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        
