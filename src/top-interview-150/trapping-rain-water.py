@@ -27,7 +27,9 @@ class Solution():
         matrix = [[0 for _ in range(cols)] for _ in range(rows)]
         for i in range(rows):
             for j in range(cols):
-                matrix[i][j] = 1
+                elevation_size = height[j]
+                isColumnFilled = elevation_size >= i + 1
+                matrix[i][j] = isColumnFilled and 1 or 0
         print("Row-by-Row Printing:")
         for i, row in enumerate(matrix):
             print(f"Row {i}: {row}")
