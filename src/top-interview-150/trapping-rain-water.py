@@ -30,10 +30,22 @@ class Solution():
                 elevation_size = height[j]
                 isColumnFilled = elevation_size >= i + 1
                 matrix[i][j] = isColumnFilled and 1 or 0
+
+        holes = 0
+        for i in range(rows):
+            previous_elevation_index = -1
+            for j in range(cols):
+                is_elevation = matrix[i][j] == 1
+                if (is_elevation and previous_elevation_index == -1):
+                    previous_elevation_index = j
+                elif (is_elevation):
+                    holes = holes + (j - (previous_elevation_index + 1))
+                    previous_elevation_index = j
+
         print("Row-by-Row Printing:")
         for i, row in enumerate(matrix):
             print(f"Row {i}: {row}")
-        return 0
+        return holes
     
 # Example usage:
 print(Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1]))  # Output: 6
