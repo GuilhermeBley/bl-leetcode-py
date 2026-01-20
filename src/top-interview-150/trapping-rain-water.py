@@ -42,9 +42,7 @@ class Solution():
                     holes = holes + (j - (previous_elevation_index + 1))
                     previous_elevation_index = j
 
-        print("Row-by-Row Printing:")
-        for i, row in enumerate(matrix):
-            print(f"Row {i}: {row}")
+        # TODO: Optimize runtime and space complexity
         return holes
     
 # Example usage:
