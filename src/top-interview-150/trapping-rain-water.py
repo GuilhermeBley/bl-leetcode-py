@@ -18,6 +18,29 @@ n == height.length
 """
 
 class Solution():
+    def trapOptimized(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        holes = 0
+        rows, cols = max(height), len(height)
+        for i in range(rows):
+            possible_holes = 0
+            previous_elevation_index = -1
+            for j in range(cols):
+                elevation_size = height[j]
+                is_elevation = elevation_size >= i + 1
+                if (is_elevation and previous_elevation_index == -1):
+                    previous_elevation_index = j
+                elif (is_elevation):
+                    holes = holes + (j - (previous_elevation_index + 1))
+                    previous_elevation_index = j
+
+
+        # TODO: Optimize runtime and space complexity
+        return holes
+    
     def trap(self, height):
         """
         :type height: List[int]
@@ -46,5 +69,5 @@ class Solution():
         return holes
     
 # Example usage:
-print(Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1]))  # Output: 6
-print(Solution().trap([4,2,0,3,2,5]))  # Output: 9
+print(Solution().trapOptimized([0,1,0,2,1,0,1,3,2,1,2,1]))  # Output: 6
+print(Solution().trapOptimized([4,2,0,3,2,5]))  # Output: 9
