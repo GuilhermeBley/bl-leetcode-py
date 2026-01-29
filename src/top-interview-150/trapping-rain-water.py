@@ -18,6 +18,9 @@ n == height.length
 """
 
 class Solution():
+
+    # TODO: NEEDS TO BE IMPROVED
+
     def trapOptimized(self, height):
         """
         :type height: List[int]
