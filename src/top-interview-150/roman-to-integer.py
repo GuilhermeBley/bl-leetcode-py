@@ -65,12 +65,17 @@ class Solution():
 
         total = len(s)
         sum = 0
+        skip_next = False
         for i in range(0, total):
             current = cls.ROMAN.get(s[i], 0)
-            next = 0 if i == total -1 else cls.ROMAN.get(s[i], 0)
+            next = 0 if i == total -1 else cls.ROMAN.get(s[i + 1], 0)
+
+            if skip_next:
+                skip_next = False
+                continue
 
             if (next > current):
-                i+=1 # skip next
+                skip_next = True
                 sum += next - current
                 continue
 
