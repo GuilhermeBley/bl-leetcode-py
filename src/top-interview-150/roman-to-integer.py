@@ -46,29 +46,31 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 """
 
 class Solution():
-    ROMAN = {
-        "I": 1,
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000,
-    }
+    
 
-    def romanToInt(cls, s):
+    def romanToInt(_self, s):
         """
         :type s: str
         :rtype: int
         """
+        ROMAN = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000,
+        }
+
         if (type(s) != str): return 0
 
         total = len(s)
         sum = 0
         skip_next = False
         for i in range(0, total):
-            current = cls.ROMAN.get(s[i], 0)
-            next = 0 if i == total -1 else cls.ROMAN.get(s[i + 1], 0)
+            current = ROMAN.get(s[i], 0)
+            next = 0 if i == total -1 else ROMAN.get(s[i + 1], 0)
 
             if skip_next:
                 skip_next = False
