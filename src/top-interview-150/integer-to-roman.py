@@ -70,15 +70,44 @@ class Solution(object):
         num_txt = str(num)
 
         level = 0
+        parts = []
         for n in reversed(num_txt):
             try:
                 if n == '0': continue
-                elif n == '1': continue
+                elif n == '1':
+                    parts.insert(0, roman_levels[level])
+                    continue
+                elif n == '2': 
+                    parts.insert(0, roman_levels[level] + roman_levels[level])
+                    continue
+                elif n == '3': 
+                    parts.insert(0, roman_levels[level] + roman_levels[level] + roman_levels[level])
+                    continue
+                elif n == '4': 
+                    parts.insert(0, roman_levels_half[level] + roman_levels[level])
+                    continue
+                elif n == '5': 
+                    parts.insert(0, roman_levels_half[level])
+                    continue
+                elif n == '6': 
+                    parts.insert(0, roman_levels_half[level] + roman_levels[level])
+                    continue
+                elif n == '7': 
+                    parts.insert(0, roman_levels_half[level] + roman_levels[level] + roman_levels[level])
+                    continue
+                elif n == '8': 
+                    parts.insert(0, roman_levels_half[level] + roman_levels[level] + roman_levels[level] + roman_levels[level])
+                    continue
+                elif n == '9': 
+                    parts.insert(0, roman_levels[level+1] + roman_levels[level])
+                    continue
             finally:
-                level
+                level += 1
+        
+        return "".join(parts)
 
 
-print("Value: {solution}, expected output: {expected}".format(solution=Solution().intToRoman(3749), expected="MMMDCCXLIX"))
-print("Value: {solution}, expected output: {expected}".format(solution=Solution().intToRoman(58), expected="LVIII"))
-print("Value: {solution}, expected output: {expected}".format(solution=Solution().intToRoman(1994), expected="MCMXCIV"))
+print("3749 - Value: {solution}, expected output: {expected}".format(solution=Solution().intToRoman(3749), expected="MMMDCCXLIX"))
+print("58 - Value: {solution}, expected output: {expected}".format(solution=Solution().intToRoman(58), expected="LVIII"))
+print("1994 - Value: {solution}, expected output: {expected}".format(solution=Solution().intToRoman(1994), expected="MCMXCIV"))
         
