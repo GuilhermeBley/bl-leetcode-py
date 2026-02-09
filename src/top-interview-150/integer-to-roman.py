@@ -84,11 +84,7 @@ class Solution(object):
                     parts.insert(0, roman_levels[level] + roman_levels[level] + roman_levels[level])
                     continue
                 elif n == '4': 
-<<<<<<< HEAD
                     parts.insert(0, roman_levels[level] + roman_levels_half[level])
-=======
-                    parts.insert(0, roman_levels_half[level] + roman_levels[level])
->>>>>>> 06210ca98b6104f48819dd2bb9c937075eb0ea8c
                     continue
                 elif n == '5': 
                     parts.insert(0, roman_levels_half[level])
@@ -103,11 +99,7 @@ class Solution(object):
                     parts.insert(0, roman_levels_half[level] + roman_levels[level] + roman_levels[level] + roman_levels[level])
                     continue
                 elif n == '9': 
-<<<<<<< HEAD
                     parts.insert(0, roman_levels[level] + roman_levels[level+1])
-=======
-                    parts.insert(0, roman_levels[level+1] + roman_levels[level])
->>>>>>> 06210ca98b6104f48819dd2bb9c937075eb0ea8c
                     continue
             finally:
                 level += 1
