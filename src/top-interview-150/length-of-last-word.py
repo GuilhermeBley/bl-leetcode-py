@@ -36,13 +36,8 @@ class Solution():
         :type s: str
         :rtype: int
         """
-        s = "".join(s).rstrip(' ')
-        last_s = [i for i, c in enumerate(s) if c == ' ']
-        if last_s:
-            last_space_index = last_s[-1]
-        else:
-            last_space_index = -1
-        return len(s) - last_space_index - 1
+        s = "".join(s)
+        return len(s.rstrip(' ').split(' ')[-1])
     
 print("Example 1: 'Hello World' Should be 5, Current: {number}".format(number = Solution().lengthOfLastWord("Hello World")))
 print("Example 2: '   fly me   to   the moon  ' Should be 4, Current: {number}".format(number = Solution().lengthOfLastWord("   fly me   to   the moon  ")))
