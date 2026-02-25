@@ -30,15 +30,13 @@ class Solution():
         
         if len(strs) == 0: return ""
 
-        last_bigger = 0
-        last_str = ""
-
         dic = { }
         while  (True): # going through each letter
             i = 0
             for strc in strs:
-                if i == 0 or strc in dic:
-                    dic[strc] = dic.get(strc, 0) + 1
+                if i < len(strc) and (i == 0 or strc in dic):
+                    key = "".join(strc)[0:i+1]
+                    dic[key] = dic.get(key, 0) + 1
             i+=1
             # Removing low quantities
             maxQtt = max(qtt for qtt in dic.items())
@@ -47,8 +45,11 @@ class Solution():
             if (len(dic) in [0, 1]):
                 break
 
+        if (len(dic) > 0):
+            return next(iter(dic.values()))
+        
+        return ""
 
-        return dic.values()
 
 print("['dog','racecar','car'] = '' and current is {val}".format(val=Solution().longestCommonPrefix(["dog","racecar","car"])))
 print("['flower','flow','flight'] = 'fl' and current is {val}".format(val=Solution().longestCommonPrefix(["flower","flow","flight"])))
