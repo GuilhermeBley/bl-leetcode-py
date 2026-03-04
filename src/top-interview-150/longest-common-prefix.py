@@ -37,9 +37,10 @@ class Solution():
                     dic[key] = dic.get(key, 0) + 1
             
             if (len(dic) == 0): return ""
+            if (len(strs) == 1): return strs[0]
 
             # Removing low quantities
-            maxQtt = max(qtt for _,qtt in dic.items())
+            maxQtt = max([max(qtt for _,qtt in dic.items()), 2])
             dic = { letter: qtt for letter, qtt in dic.items() if qtt == maxQtt }
                         
             availableletters = [st for st,_ in dic.items()]
@@ -47,8 +48,6 @@ class Solution():
             strs = [st for st in strs if len(st) > 0 and i < len(st) and st[i] in availableletters]
             if (len(oldstrs) > len(strs) and i > 0):
                 return oldstrs[0][0:i]
-            if (len(strs) == 1):
-                return strs[0]
             if (len(strs) == len(dic)):
                 return "" # all letters are different
             
@@ -61,6 +60,7 @@ class Solution():
 
 
 print("['a'] = 'a' and current is '{val}'".format(val=Solution().longestCommonPrefix(["a"])))
+print("['', 'a'] = '' and current is '{val}'".format(val=Solution().longestCommonPrefix(["", "a"])))
 print("['dog','racecar','car'] = '' and current is '{val}'".format(val=Solution().longestCommonPrefix(["dog","racecar","car"])))
 print("['flower','flow','flight'] = 'fl' and current is '{val}'".format(val=Solution().longestCommonPrefix(["flower","flow","flight"])))
 print("['gol','gol bola', 'flower','flow','flight'] = 'flo' and current is '{val}'".format(
