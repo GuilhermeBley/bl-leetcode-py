@@ -21,9 +21,9 @@ Output: "PAHNAPLSIIGYIR"
 0   1   2   3   4   5   6   7   8   9   10  11  12  13
 P   A   Y   P   A   L   I   S   H   I   R   I   N   G
 Index walk: 
-0 -> 4 -> 8 -> 12 ->
-1 -> 3 -> 5 -> 7 -> 9 -> 11 -> 13
-2 -> 6 -> 10
+0 -> 4 -> 8 -> 12 -> (+4)
+1 -> 3 -> 5 -> 7 -> 9 -> 11 -> 13 (+2)
+2 -> 6 -> 10 (+4)
 
 Example 2:
 Input: s = "PAYPALISHIRING", numRows = 4
@@ -33,6 +33,15 @@ P     I    N
 A   L S  I G
 Y A   H R
 P     I
+
+0   1   2   3   4   5   6   7   8   9   10  11  12  13
+P   A   Y   P   A   L   I   S   H   I   R   I   N   G
+s   s   s   s   s   s   s   s   s   x   s   s   s   x
+Index walk: 
+0 -> 6 -> 12 (+6)
+1 -> 5 -> 7 -> 11 -> 13 (+4, +2, ...)
+2 -> 4 -> 8 -> 10 (+2, +4, ...)
+3 -> 9 (+6)
 
 Example 3:
 Input: s = "A", numRows = 1
