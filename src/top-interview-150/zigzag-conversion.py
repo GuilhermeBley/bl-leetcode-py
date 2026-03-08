@@ -38,8 +38,8 @@ P     I
 P   A   Y   P   A   L   I   S   H   I   R   I   N   G
 s   s   s   s   s   s   s   s   s   x   s   s   s   x
 Index walk: 
-0 -> 6 -> 12 (+6)
-1 -> 5 -> 7 -> 11 -> 13 (+4, +2, ...)
+0 -> 6 -> 12 (+6) (numRows + 1)
+1 -> 5 -> 7 -> 11 -> 13 (+4, +2, ...) (numRows + )
 2 -> 4 -> 8 -> 10 (+2, +4, ...)
 3 -> 9 (+6)
 
@@ -55,5 +55,9 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
+        newS = []
+
+        return ''.join(newS)
+        
         
 print(Solution().convert("PAYPALISHIRING", 3))
