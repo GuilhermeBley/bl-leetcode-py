@@ -74,9 +74,7 @@ class Solution(object):
         lastIndex = totalText-1
         if (lastIndex < 1): return 0
 
-        if (currentIndex == 0): return 0
-
-        return numRows * 2 - currentIndex + 1
+        return ((numRows * 2) * (currentIndex % numRows)) % (totalText - 1)
 
     def convert(self, s, numRows):
         """
@@ -87,9 +85,17 @@ class Solution(object):
         newS = ""
         total_length = len(s)
         for i in range(0, total_length):
-            newS += s[self.converToZigZagIndex(currentIndex=i, numRows=numRows, totalText=total_length)]
+            c_index = self.converToZigZagIndex(currentIndex=i, numRows=numRows, totalText=total_length)
+            newS += s[c_index]
 
         return newS
         
         
 print(Solution().convert("PAYPALISHIRING", 3))
+
+"""
+P     I    N
+A   L S  I G
+Y A   H R
+P     I
+"""
