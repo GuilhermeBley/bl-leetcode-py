@@ -70,11 +70,17 @@ Output: "A"
 
 class Solution(object):
 
-    def converToZigZagIndex(self, currentIndex, totalText, numRows) -> int:
-        lastIndex = totalText-1
+    def converToZigZagIndex(self, index, previous_zigzag_index, num_rows, total_text) -> int:
+        lastIndex = total_text-1
         if (lastIndex < 1): return 0
 
-        return ((numRows * 2) * (currentIndex % numRows)) % (totalText - 1)
+        if (index == 0): return 0
+
+        safe_non_zero = 1
+        walk_size = num_rows * 2
+        current_row_multiplier = (previous_zigzag_index + walk_size) % num_rows + safe_non_zero
+        walk_for_index = int(walk_size / current_row_multiplier)
+        return (previous_zigzag_index + walk_for_index) % (total_text - 1)
 
     def convert(self, s, numRows):
         """
@@ -84,14 +90,16 @@ class Solution(object):
         """
         newS = ""
         total_length = len(s)
+        previous_index = 0
         for i in range(0, total_length):
-            c_index = self.converToZigZagIndex(currentIndex=i, numRows=numRows, totalText=total_length)
+            c_index = self.converToZigZagIndex(index=i, previous_zigzag_index=previous_index, num_rows=numRows, total_text=total_length)
             newS += s[c_index]
+            previous_index = c_index
 
         return newS
         
         
-print(Solution().convert("PAYPALISHIRING", 3))
+print(Solution().convert("PAYPALISHIRING", 3)) #PINALSIGYAHRPI
 
 """
 P     I    N
